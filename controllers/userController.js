@@ -22,6 +22,21 @@ const getUsers = (req,res) => {
     res.status(200).send(parent);
 };
 
+const getCurrentUserDatas = async(req,res) => {
+
+    const userId = req.params.id;
+    console.log("userId", userId)
+
+    const currentUserDatas = await sequelize.query("SELECT * FROM users WHERE id =:userId", {
+        replacements: { userId },
+        type: sequelize.QueryTypes.SELECT,
+      });
+      
+    res.status(200).send(currentUserDatas);
+
+};
+
+
 const getUsersWhoPracticeMusculation = async(req,res) => {
 
    const response = await sequelize.query("SELECT u.nom, u.prenom FROM users as u JOIN user_sports as us ON u.id = us.idUser JOIN sports as s ON us.idSport = s.id WHERE s.nom = 'musculation' GROUP BY u.nom", { type: QueryTypes.SELECT })
@@ -32,5 +47,6 @@ const getUsersWhoPracticeMusculation = async(req,res) => {
 module.exports = {
     createUser,
     getUsers,
-    getUsersWhoPracticeMusculation
+    getUsersWhoPracticeMusculation,
+    getCurrentUserDatas
 }
