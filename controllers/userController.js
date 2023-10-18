@@ -16,9 +16,9 @@ const createUser = async(req,res) => {
     res.status(200).send(parent);
 };
 
-const getUsers = (req,res) => {
+const getUsers = async (req,res) => {
 
-    const parent = Users.findAll({});
+    const parent = await Users.findAll({});
     res.status(200).send(parent);
 };
 
@@ -44,9 +44,15 @@ const getUsersWhoPracticeMusculation = async(req,res) => {
    res.status(200).send(response);
 };
 
+const getUsersWithBurgerCar = async (req, res) => {
+    const response = await sequelize.query("SELECT nom, prenom, modele FROM users u JOIN voitures v ON u.id = v.user_id WHERE modele = 'burger';", { type: QueryTypes.SELECT })
+    res.status(200).send(response);
+};
+
 module.exports = {
     createUser,
     getUsers,
     getUsersWhoPracticeMusculation,
-    getCurrentUserDatas
+    getCurrentUserDatas,
+    getUsersWithBurgerCar
 }
