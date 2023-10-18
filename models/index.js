@@ -1,5 +1,6 @@
 const dbConfig = require('../config/db.config.js');
 const {Sequelize, DataTypes} = require('sequelize');
+const { QueryTypes } = require('sequelize');
 
 const sequelize = new Sequelize(
     dbConfig.DB,
@@ -34,4 +35,4 @@ db.sequelize.sync({ force : false})
     console.log('yes re-sync done !')
 })
 
-module.exports = db
+module.exports = {db, sequelize, QueryTypes}
