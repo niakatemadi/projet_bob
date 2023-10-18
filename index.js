@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended : true }));
 
 //Routers
 const userRouter = require('./routes/UserRoute.js');
+const voitureRouter = require('./routes/VoitureRoute.js');
 
 app.get('/test', (req, res) => {
 
@@ -27,6 +28,7 @@ app.get('/test', (req, res) => {
 })*/
 
 app.use('/api/user', userRouter);
+app.use('/api/voitures', voitureRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
