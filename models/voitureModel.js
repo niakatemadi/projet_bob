@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-    const Voiture = sequelize.define("voiture", {
+    const Voiture = sequelize.define("voitures", {
 
         immatriculation: {
             type: DataTypes.STRING
