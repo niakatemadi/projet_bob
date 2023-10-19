@@ -36,6 +36,21 @@ const getCurrentUserDatas = async(req,res) => {
 
 };
 
+//Update controller
+
+const updateUser = async (req, res) =>{
+
+    const id = req.params.id;
+    console.log("update ",req.body);
+
+    await  Users.update(req.body, { where: { id }});
+
+    res.status(200).send("Utilisateur modifié avec success");
+
+    
+
+}
+
 
 const getUsersWhoPracticeMusculation = async(req,res) => {
 
@@ -48,5 +63,6 @@ module.exports = {
     createUser,
     getUsers,
     getUsersWhoPracticeMusculation,
-    getCurrentUserDatas
+    getCurrentUserDatas,
+    updateUser
 }
