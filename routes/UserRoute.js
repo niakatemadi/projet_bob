@@ -8,4 +8,11 @@ router.get("/get_users_who_practice_musculation", userController.getUsersWhoPrac
 router.get("/get_current_user/:id", userController.getCurrentUserDatas);
 router.get("/get_users_with_burger_car", userController.getUsersWithBurgerCar);
 
+
+// Route update
+router.put('/:id', userController.updateUser);
+
+
+
+
 module.exports = router;
