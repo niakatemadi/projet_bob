@@ -17,14 +17,32 @@ function App() {
   const [email, setEmail] = useState("")
   const [age, setAge] = useState("")
   
-  const handleOnCreate = () => {
-  
+  const handleOnCreate = async (e) => {
+    e.preventDefault();
+    const formData = {
+      prenom: firstName,
+      nom: lastName,
+      email: email,
+      age: age
+    };
+    try {
+      const response = await fetch(`http://localhost:8080/api/user/createUsername`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify(formData)
+      });
+    } catch (error) {
+        console.error('Error during updated:', error);
+    }
   }
 
   return (
     <>
       <nav>Projet Bob</nav>
-      <form>
+      <form onSubmit={handleOnCreate}>
         <label>Prénom</label>
         <input type="text" onChange={(e) => setFirstName(e.target.value)}/>
         <label>Nom</label>
