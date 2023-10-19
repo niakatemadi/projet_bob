@@ -1,8 +1,8 @@
 const express = require("express");
+const cors = require("cors");
 const sq = require("./models/index.js");
 const app = express();
 const port = 8080;
-const cors = require('cors');
 
 
 // Middleware

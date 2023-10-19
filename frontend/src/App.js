@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import react, { useState, useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    async function getUsers() {
+      const response = await fetch ("http://localhost:8080/api/user/getusers");
+      response.json().then(data => {
+        setUsers(data);
+      })
+    }
+    getUsers();
+  }, [])
+  
+  const [users, setUsers] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [age, setAge] = useState("")
+  
+  const handleOnCreate = () => {
+  
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <nav>Projet Bob</nav>
+      <form>
+        <label>Prénom</label>
+        <input type="text" onChange={(e) => setFirstName(e.target.value)}/>
+        <label>Nom</label>
+        <input type="text" onChange={(e) => setLastName(e.target.value)}/>
+        <label>Email</label>
+        <input type="email"onChange={(e) => setEmail(e.target.value)} />
+        <label>Age</label>
+        <input type="number" onChange={(e) => setAge(e.target.value)} />
+        <button type="submit">Ajouter un utilisateur</button>
+      </form>
+      {users.map((user) => {
+        return (
+          <div >
+            <p>{user.prenom}</p>
+            <p>{user.nom}</p>
+            <p>{user.email}</p>
+            <p>{user.age}</p>
+          </div>
+        )
+      })}
+    </>
   );
 }
 
