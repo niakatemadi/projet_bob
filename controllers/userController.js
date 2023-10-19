@@ -46,9 +46,16 @@ const updateUser = async (req, res) =>{
     await  Users.update(req.body, { where: { id }});
 
     res.status(200).send("Utilisateur modifié avec success");
+}
 
-    
+const deleteUser = async(req, res) =>{
+    const id = req.params.id;
+    console.log("delete ",req.body);
 
+    Users.destroy({ where : { id : id }});
+
+    // res.json('User deleted !');
+    res.status(200).send("Utilisateur supprimé  avec success");
 }
 
 
@@ -70,5 +77,6 @@ module.exports = {
     getUsersWhoPracticeMusculation,
     getCurrentUserDatas,
     getUsersWithBurgerCar,
-    updateUser
+    updateUser,
+    deleteUser
 }

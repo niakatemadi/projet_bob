@@ -12,6 +12,10 @@ router.get("/get_users_with_burger_car", userController.getUsersWithBurgerCar);
 // Route update
 router.put('/:id', userController.updateUser);
 
+//
+
+router.delete('/:id', userController.deleteUser);
+
 
 
 
